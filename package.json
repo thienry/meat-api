@@ -1,26 +1,53 @@
 {
-  "name": "meat-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon dist/main.js",
-    "start": "tsc -w"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^4.0.1",
-    "mongoose": "^5.9.18",
-    "restify": "^8.5.1",
-    "restify-errors": "^8.0.2"
-  },
-  "devDependencies": {
-    "@types/bcrypt": "^3.0.0",
-    "@types/mongoose": "^5.7.22",
-    "@types/restify": "^8.4.2",
-    "@types/restify-errors": "^4.3.3",
-    "nodemon": "^2.0.4"
-  }
+	"name": "meat-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon dist/main.js",
+		"start": "tsc -w",
+		"test": "ts-node src/jest.startup.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"jest": {
+		"globals": {
+			"address": "http://localhost:3001"
+		},
+		"testEnvironment": "node",
+		"transform": {
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	},
+	"dependencies": {
+		"bcrypt": "^4.0.1",
+		"mongoose": "^5.9.18",
+		"restify": "^8.5.1",
+		"restify-errors": "^8.0.2"
+	},
+	"devDependencies": {
+		"@types/bcrypt": "^3.0.0",
+		"@types/jest": "^25.2.3",
+		"@types/mongoose": "^5.7.22",
+		"@types/restify": "^8.4.2",
+		"@types/restify-errors": "^4.3.3",
+		"@types/supertest": "^2.0.9",
+		"jest": "^26.0.1",
+		"jest-cli": "^26.0.1",
+		"nodemon": "^2.0.4",
+		"supertest": "^4.0.2",
+		"ts-jest": "^26.1.0",
+		"ts-node": "^8.10.2",
+		"typescript": "^3.9.5"
+	}
 }

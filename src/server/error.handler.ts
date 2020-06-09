@@ -27,7 +27,10 @@ export const handleError = (
 				messages.push({ messages: err.errors[name].message })
 			}
 
-			err.toJSON = () => ({ errors: messages })
+			err.toJSON = () => ({
+				message: 'Validation error while processing your request',
+				errors: messages
+			})
 			return;
 
 		default:
