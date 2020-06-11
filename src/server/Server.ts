@@ -4,6 +4,7 @@ import * as mongoose from 'mongoose'
 import { Router } from '../common/router'
 import { handleError } from './error.handler'
 import { environment } from '../common/environment'
+import { tokenParser } from '../security/token.parser'
 import { mergePatchBodyParser } from './merge-patch.parser'
 
 export class Server {
@@ -14,7 +15,9 @@ export class Server {
 
 		return mongoose.connect(environment.database.url, {
 			useNewUrlParser: true,
-			useUnifiedTopology: true
+			useUnifiedTopology: true,
+			useCreateIndex: true,
+			useFindAndModify: false
 		})
 	}
 
@@ -29,6 +32,7 @@ export class Server {
 				this.application.use(restify.plugins.queryParser())
 				this.application.use(restify.plugins.bodyParser())
 				this.application.use(mergePatchBodyParser)
+				this.application.use(tokenParser)
 
 				// Routes
 				routers.forEach(router => router.applyRoutes(this.application))

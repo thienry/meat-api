@@ -11,7 +11,7 @@ server.bootstrap([
 	reviewsRouter
 ])
 	.then(server => {
-		console.log(`Server is listening on: ${server.application.address()}`)
+		console.log(`Server is running...`)
 	})
 	.catch(err => {
 		console.log('Server failed to start!')

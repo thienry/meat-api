@@ -3,6 +3,7 @@ import * as mongoose from 'mongoose'
 
 import { ModelRouter } from '../common/model.router'
 import { Review } from './reviews.model'
+import { authorize } from '../security/authz.handler'
 
 class ReviewsRouter extends ModelRouter<Review> {
 	constructor() {
@@ -24,20 +25,10 @@ class ReviewsRouter extends ModelRouter<Review> {
 		return resource
 	}
 
-	/*
-	findById = (req, res, next) => {
-		this.model.findById(req.params.id)
-			.populate('user', 'name')
-			.populate('restaurant', 'name')
-			.then(this.render(res, next))
-			.catch(next)
-	}
-	*/
-
 	applyRoutes(application: restify.Server) {
 		application.get(`${this.basePath}`, this.findAll)
+		application.post(`${this.basePath}`, [authorize('user'), this.save])
 		application.get(`${this.basePath}/:id`, [this.validateId, this.findById])
-		application.post(`${this.basePath}`, this.save)
 	}
 }
 
